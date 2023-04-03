@@ -4,8 +4,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.example.webbanhangfinal.UserManagerment.AppUserException;
 import com.example.webbanhangfinal.auththenticate.Login.LoginHandle.LoginRespone;
-import com.example.webbanhangfinal.auththenticate.UserManagerment.AppUserException;
 
 import lombok.extern.log4j.Log4j2;
 @Log4j2
@@ -16,17 +16,17 @@ public class GlobalExceptionHandler {
           log.error("an error authentication at: ", e);
           switch (e.getMessage()) {
             case "User is disabled":
-            LoginRespone loginRespone = new LoginRespone(null,"User is disabled");
+            LoginRespone loginRespone = new LoginRespone(null,null,"User is disabled",0);
                 return ResponseEntity.status(403).body(loginRespone);
             case "Bad credentials":
-            LoginRespone loginRespone1 = new LoginRespone(null,"password is incorrect!");
+            LoginRespone loginRespone1 = new LoginRespone(null,null,"password is incorrect!",0);
                 return ResponseEntity.status(403).body(loginRespone1);             
 
 
                 
           
             default:
-            LoginRespone defaultLoginRespone = new LoginRespone(null,"unknow error, we will fix it soon!!");
+            LoginRespone defaultLoginRespone = new LoginRespone(null,null,"unknow error, we will fix it soon!!",0);
             return ResponseEntity.status(403).body(defaultLoginRespone);
           }
         

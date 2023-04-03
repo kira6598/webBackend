@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.example.webbanhangfinal.auththenticate.Register.UserToken.ConfirmationUserToken;
+import com.example.webbanhangfinal.MVC.Model.ConfirmationUserToken;
 
 import jakarta.transaction.Transactional;
 

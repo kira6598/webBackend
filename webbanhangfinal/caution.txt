@@ -1,0 +1,1 @@
+chú ý: khi deploy lên sever thì cần uncomment method EmailService.Send tại class RegisterService dòng 36
