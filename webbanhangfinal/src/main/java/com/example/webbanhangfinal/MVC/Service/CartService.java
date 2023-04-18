@@ -30,7 +30,7 @@ public class CartService {
         Integer quatity = request.quantity();
         Cart cart = cartRepository.getCart(clientId, productId);
         if(cart==null){                       
-            int result=cartRepository.addCartWithSP(quatity,clientId,productId);// init cart's id            
+            int result=cartRepository.addCartWithStoredProcedure(quatity,clientId,productId);// init cart's id            
             return result;
         }else{
             return 0;
@@ -59,14 +59,18 @@ public class CartService {
     }
 
 
-    public boolean deleteCartById(String userID,String productId) {
+    public int deleteCartById(String userID,String productId) {
+
         Integer userIdNumb=Integer.parseInt(userID);
-        int row = cartRepository.deleteCartById(userIdNumb,productId);
-        if(row>0){
-            return true;
+        String All= "all";
+        int row;
+        if(productId.equalsIgnoreCase(All)){
+            row= cartRepository.deleteAllById(userID);
         }else{
-            return false;
+            row = cartRepository.deleteCartById(userIdNumb,productId);
+
         }
+        return row;
         
     }
     

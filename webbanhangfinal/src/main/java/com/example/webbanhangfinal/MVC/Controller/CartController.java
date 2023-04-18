@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.webbanhangfinal.CartManager.addRequest;
 import com.example.webbanhangfinal.CartManager.changeRequest;
-import com.example.webbanhangfinal.CartManager.deleteRequest;
 import com.example.webbanhangfinal.MVC.Service.CartService;
-// import com.example.webbanhangfinal.Repository.DetaiCart1;
 import com.example.webbanhangfinal.Repository.DetailCart;
 
 import lombok.RequiredArgsConstructor;
@@ -97,9 +95,9 @@ public ResponseEntity<String> saveImage(@RequestBody String jpgUrl) {
     }
 }
     @DeleteMapping("/delete/{userId}")
-    public ResponseEntity<Boolean> deleteById(@PathVariable("userId") String userId,@RequestParam(name = "productId") String productId ){
-        boolean result= cartService.deleteCartById(userId,productId);
-        if(result){
+    public ResponseEntity<Integer> deleteById(@PathVariable("userId") String userId,@RequestParam(name = "productId") String productId ){
+        int result= cartService.deleteCartById(userId,productId);
+        if(result>0){
             return ResponseEntity.ok().body(result);
         }else{
             return ResponseEntity.internalServerError().body(result);

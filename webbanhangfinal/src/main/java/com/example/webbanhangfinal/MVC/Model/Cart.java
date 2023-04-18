@@ -1,4 +1,5 @@
 package com.example.webbanhangfinal.MVC.Model;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,7 +9,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 @Entity
-@Table(name = "cart1")
+@Table(name = "cart")
 @Getter
 @Setter
 public class Cart {
@@ -20,6 +21,7 @@ public class Cart {
     @ManyToOne
     private  AppUser client;
     private Integer quantity;    
-    private Integer total;
+    private Integer total;   
+    @Column(columnDefinition = "boolean default false")
     private boolean bought;
 }

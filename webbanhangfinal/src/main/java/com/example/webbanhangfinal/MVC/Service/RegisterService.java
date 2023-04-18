@@ -23,7 +23,7 @@ public class RegisterService{
     public String registerRequest(@RequestBody RegisterRequest request) throws AppUserException{
         if(!validatorEmail.test(request.email())) {
             return "email is invalid";
-        }   
+        }  
         
             // sau khi kiểm tra và validate email ta tiến hành tạo token và gửi đi
             String token = appUserService.SignUpUser(
@@ -35,7 +35,6 @@ public class RegisterService{
             return "Success";
         }      
     
-  
     private String buildEmail(String name, String link) {
         return "<div style=\"font-family:Helvetica,Arial,sans-serif;font-size:16px;margin:0;color:#0b0c0c\">\n" +
                 "\n" +
@@ -104,7 +103,7 @@ public class RegisterService{
                 "\n" +
                 "</div></div>";
     }
-    
+
     public String confirmToken(@RequestParam String token) {
         ConfirmationUserToken confirmationToken = tokenService.getToken(token).orElseThrow(()-> new IllegalStateException("taken not found"));
         if(confirmationToken.getConfirmedAt()!=null){
@@ -119,6 +118,4 @@ public class RegisterService{
         tokenService.SetConfirmAt(token);
         return "confirmed";
     }
-
-
 }
